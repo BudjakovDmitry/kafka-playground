@@ -90,7 +90,7 @@ Kafka GUI now available at `http://localhost:8080`
 ```shell
 docker exec -it kafka1 kafka-topics \
     --create \
-    --topic cli-topic \
+    --topic my-topic \
     --bootstrap-server kafka1:9092 \
     --replication-factor 3 \
     --partitions 3
@@ -101,5 +101,22 @@ List all topics:
 ```
 docker exec -it kafka1 kafka-topics \
     --list \
+    --bootstrap-server kafka1:9092
+```
+
+Send message to the topic
+
+```shell
+docker exec -it kafka1 kafka-console-producer \
+--topic my-topic \
+--bootstrap-server kafka1:9092
+```
+
+Read messages from topic
+
+```shell
+docker exec -it kafka1 kafka-console-consumer \
+    --from-beginning \
+    --topic my-topic \
     --bootstrap-server kafka1:9092
 ```
